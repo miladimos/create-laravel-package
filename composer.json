@@ -18,6 +18,7 @@
     "require": {
         "php": "^7.3",
         "illuminate/log": "^8.0",
+        "laminas/laminas-text": "^2.7",
         "laravel-zero/framework": "^8.0"
     },
     "require-dev": {
