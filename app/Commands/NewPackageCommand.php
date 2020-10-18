@@ -28,7 +28,8 @@ class NewPackageCommand extends Command
      */
     public function handle()
     {
-        $this->info("Test");
+        $this->notify('Hello Web Artisan', 'Love beautiful code? We do too!');
+//        $this->info("Test");
     }
 
     /**

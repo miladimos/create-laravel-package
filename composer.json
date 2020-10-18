@@ -19,7 +19,8 @@
         "php": "^7.3",
         "illuminate/log": "^8.0",
         "laminas/laminas-text": "^2.7",
-        "laravel-zero/framework": "^8.0"
+        "laravel-zero/framework": "^8.0",
+        "nunomaduro/laravel-desktop-notifier": "^2.4"
     },
     "require-dev": {
         "mockery/mockery": "^1.4.2",

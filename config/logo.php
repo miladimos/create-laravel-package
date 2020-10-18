@@ -27,7 +27,7 @@ return [
     */
 
     'font' => \LaravelZero\Framework\Components\Logo\FigletString::DEFAULT_FONT,
-
+//    'font' => resources_path('fonts/doom.flf'),
     /*
     |--------------------------------------------------------------------------
     | Output Width
@@ -39,7 +39,7 @@ return [
     |
     */
 
-    'outputWidth' => 80,
+    'outputWidth' => 130,
 
     /*
     |--------------------------------------------------------------------------
