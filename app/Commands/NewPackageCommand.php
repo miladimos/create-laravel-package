@@ -12,7 +12,7 @@ class NewPackageCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'new';
+    protected $signature = 'new {modelName}';
 
     /**
      * The description of the command.
