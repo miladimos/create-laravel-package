@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => 'Create-laravel-package',
+    'name' => 'create-laravel-package',
 
     /*
     |--------------------------------------------------------------------------
