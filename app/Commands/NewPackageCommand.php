@@ -52,4 +52,5 @@ class NewPackageCommand extends Command
         $result = Http::get($url);
         return $result;
     }
+    
 }
