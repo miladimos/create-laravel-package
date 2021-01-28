@@ -2,7 +2,6 @@
 
 namespace App\Commands;
 
-use Illuminate\Support\Facades\Http;
 use Illuminate\Console\Scheduling\Schedule;
 use LaravelZero\Framework\Commands\Command;
 
@@ -29,10 +28,11 @@ class NewPackageCommand extends Command
      */
     public function handle()
     {
-        $this->notify('Hello Web Artisan', 'Love beautiful code? We do too!');
-        $templateRepoZipFileUrl = "https://github.com/miladimos/package-skeleton/archive/master.zip";
+        //$this->notify('Hello Web Artisan', 'Love beautiful code? We do too!');
+        die;
+       // $templateRepoZipFileUrl = "https://github.com/miladimos/package-skeleton/archive/master.zip";
 
-        $this->downloadTemplateZipFile($templateRepoZipFileUrl);
+        //$this->downloadTemplateZipFile($templateRepoZipFileUrl);
         //        $this->info("Test");
     }
 
@@ -52,5 +52,5 @@ class NewPackageCommand extends Command
         $result = Http::get($url);
         return $result;
     }
-    
+
 }
