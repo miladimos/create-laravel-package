@@ -2,6 +2,7 @@
 
 namespace App\Commands;
 
+use App\Services\PackageTemplateService;
 use ZipArchive;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
@@ -16,7 +17,8 @@ class NewPackageCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'new {name: packageName}';
+    protected $signature = 'new
+                            {name? : packageName}';
 
     /**
      * The description of the command.
@@ -26,17 +28,33 @@ class NewPackageCommand extends Command
     protected $description = 'Create a new laravel package template';
 
     /**
+     * The name of the package.
+     *
+     * @var string
+     */
+    protected $name;
+
+    /**
      * Execute the console command.
      *
      * @return mixed
      */
-    public function handle()
+    public function handle(PackageTemplateService $service)
     {
-        $this->info("new Package");
+        $this->info("Creating new laravel package template ... ");
+
+        $this->name = $service->name($this->argument('name'));
+
+        if (!$this->argument('name')) {
+            $this->name = $service->name($this->ask('Package Name: '));
+        }
+
+        $this->newLine();
+        $this->info($this->name);
+        $this->newLine();
 
         $url = "https://github.com/miladimos/package-skeleton/archive/master.zip";
 
-        $this->downloadTemplate($url);
 
         $this->task("Installing Laravel", function () {
             return false;
@@ -52,26 +70,5 @@ class NewPackageCommand extends Command
     public function schedule(Schedule $schedule): void
     {
         // $schedule->command(static::class)->everyMinute();
-    }
-
-
-    public function downloadTemplate(string $url)
-    {
-
-        $result = Http::get($url);
-
-        Storage::put("template.zip", $result);
-    }
-
-    public function extractTemplate($templatePath)
-    {
-        $zip = new ZipArchive;
-        if ($zip->open($templatePath) === true) {
-            $zip->extractTo('/my/destination/dir/');
-            $zip->close();
-            return true;
-        } else {
-            return false;
-        }
     }
 }
