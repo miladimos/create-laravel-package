@@ -5,21 +5,21 @@ namespace App\Commands;
 use Illuminate\Console\Scheduling\Schedule;
 use LaravelZero\Framework\Commands\Command;
 
-class NewPackageCommand extends Command
+class VersionCommand extends Command
 {
     /**
      * The signature of the command.
      *
      * @var string
      */
-    protected $signature = 'new {packageName}';
+    protected $signature = 'version';
 
     /**
      * The description of the command.
      *
      * @var string
      */
-    protected $description = 'Create a new Laravel Package';
+    protected $description = 'Current Version';
 
     /**
      * Execute the console command.
@@ -28,12 +28,8 @@ class NewPackageCommand extends Command
      */
     public function handle()
     {
-        //$this->notify('Hello Web Artisan', 'Love beautiful code? We do too!');
-        die;
-       // $templateRepoZipFileUrl = "https://github.com/miladimos/package-skeleton/archive/master.zip";
-
-        //$this->downloadTemplateZipFile($templateRepoZipFileUrl);
-        //        $this->info("Test");
+        $phpVersion = shell_exec("php -v");
+        $this->info("Current Installed PHP Version: \n" . $phpVersion);
     }
 
     /**
@@ -46,11 +42,4 @@ class NewPackageCommand extends Command
     {
         // $schedule->command(static::class)->everyMinute();
     }
-
-    public function downloadTemplateZipFile($url)
-    {
-        $result = Http::get($url);
-        return $result;
-    }
-
 }
