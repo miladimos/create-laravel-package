@@ -18,6 +18,7 @@ class NewPackageCommand extends Command
      * @var string
      */
     protected $signature = 'new
+                            {vendor? : vendorName}
                             {name? : packageName}';
 
     /**
@@ -35,6 +36,20 @@ class NewPackageCommand extends Command
     protected $name;
 
     /**
+     * The vendor of the package.
+     *
+     * @var string
+     */
+    protected $vendor;
+
+    /**
+     * The email of the author of package.
+     *
+     * @var string
+     */
+    protected $email;
+
+    /**
      * Execute the console command.
      *
      * @return mixed
@@ -43,14 +58,25 @@ class NewPackageCommand extends Command
     {
         $this->info("Creating new laravel package template ... ");
 
+
+        $this->vendor = $service->name($this->argument('vendor'));
+
+        if (!$this->argument('vendor')) {
+            $this->vendor = $service->name($this->ask('Vendor Name: '));
+        }
+
         $this->name = $service->name($this->argument('name'));
 
         if (!$this->argument('name')) {
             $this->name = $service->name($this->ask('Package Name: '));
         }
 
+        $this->notify("test", "ok");
+
+
         $this->newLine();
         $this->info($this->name);
+        $this->info($this->vendor);
         $this->newLine();
 
         $url = "https://github.com/miladimos/package-skeleton/archive/master.zip";
