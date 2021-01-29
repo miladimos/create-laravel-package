@@ -30,6 +30,8 @@ class VersionCommand extends Command
     {
         $phpVersion = shell_exec("php -v");
         $this->info("Current Installed PHP Version: \n" . $phpVersion);
+        $this->newLine();
+        $this->info("Current Installed Package Version: \n" . config('app.version'));
     }
 
     /**
