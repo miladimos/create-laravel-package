@@ -2,8 +2,11 @@
 
 namespace App\Commands;
 
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Console\Scheduling\Schedule;
 use LaravelZero\Framework\Commands\Command;
+
 
 class NewPackageCommand extends Command
 {
@@ -29,6 +32,11 @@ class NewPackageCommand extends Command
     public function handle()
     {
         $this->info("new Package");
+
+        $result = Http::get("https://github.com/miladimos/package-skeleton/archive/master.zip");
+
+        Storage::put("template.zip", $result);
+
 
         $this->task("Installing Laravel", function () {
             return false;
