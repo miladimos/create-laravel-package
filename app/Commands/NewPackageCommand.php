@@ -33,10 +33,9 @@ class NewPackageCommand extends Command
     {
         $this->info("new Package");
 
-        $result = Http::get("https://github.com/miladimos/package-skeleton/archive/master.zip");
+        $url = "https://github.com/miladimos/package-skeleton/archive/master.zip";
 
-        Storage::put("template.zip", $result);
-
+        $this->downloadTemplate($url);
 
         $this->task("Installing Laravel", function () {
             return false;
@@ -52,5 +51,14 @@ class NewPackageCommand extends Command
     public function schedule(Schedule $schedule): void
     {
         // $schedule->command(static::class)->everyMinute();
+    }
+
+
+    public function downloadTemplate(string $url)
+    {
+
+        $result = Http::get($url);
+
+        Storage::put("template.zip", $result);
     }
 }
