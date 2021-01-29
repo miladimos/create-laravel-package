@@ -23,7 +23,8 @@
         "illuminate/log": "^8.0",
         "laminas/laminas-text": "^2.8",
         "laravel-zero/framework": "^8.0",
-        "nunomaduro/laravel-desktop-notifier": "^2.5"
+        "nunomaduro/laravel-desktop-notifier": "^2.5",
+        "padraic/phar-updater": "^1.0.6"
     },
     "require-dev": {
         "mockery/mockery": "^1.4.2",
