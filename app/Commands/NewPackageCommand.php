@@ -2,6 +2,7 @@
 
 namespace App\Commands;
 
+use ZipArchive;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Console\Scheduling\Schedule;
@@ -60,5 +61,17 @@ class NewPackageCommand extends Command
         $result = Http::get($url);
 
         Storage::put("template.zip", $result);
+    }
+
+    public function extractTemplate($templatePath)
+    {
+        $zip = new ZipArchive;
+        if ($zip->open($templatePath) === true) {
+            $zip->extractTo('/my/destination/dir/');
+            $zip->close();
+            return true;
+        } else {
+            return false;
+        }
     }
 }
