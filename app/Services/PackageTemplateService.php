@@ -7,7 +7,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 
-class PackageTemplateService
+final class PackageTemplateService
 {
 
     public function name($name)
@@ -27,11 +27,11 @@ class PackageTemplateService
         return false;
     }
 
-    public function extract($path)
+    public function extract($templatePath, $extractTo)
     {
         $zip = new ZipArchive;
-        if ($zip->open($path) === true) {
-            $zip->extractTo('/my/destination/dir/');
+        if ($zip->open($templatePath) === true) {
+            $zip->extractTo($extractTo);
             $zip->close();
             return true;
         } else {
