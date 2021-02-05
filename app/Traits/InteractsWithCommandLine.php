@@ -5,7 +5,7 @@ namespace App\Traits;
 use Symfony\Component\Process\Process;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 
-trait InteractsWithTerminal
+trait InteractsWithCommandLine
 {
     /**
      * Run the given command as a process.
@@ -23,7 +23,7 @@ trait InteractsWithTerminal
         });
     }
 
-    protected function run($command)
+    protected function runCommand($command)
     {
         $process = new Process($command);
 

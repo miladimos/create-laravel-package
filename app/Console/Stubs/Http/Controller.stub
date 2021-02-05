@@ -1,0 +1,4 @@
+<?php
+namespace {{ $controllerNamespace }};
+
+class {{ $controllerClass }} extends controllerC
