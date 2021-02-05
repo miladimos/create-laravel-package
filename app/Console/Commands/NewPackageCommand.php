@@ -11,8 +11,12 @@ class NewPackageCommand extends Command
 {
 
     protected $signature = 'new
-                            {vendor? : vendorName}
-                            {name? : packageName}';
+                            {name? : packageName}
+                            {vendor? : vendor}
+                            {email? : authroEmail}
+                            {author? : author}
+                            {namespace? : packageNamespace}
+                            {vendorNamespace? : vendorNamespace}';
 
     protected $description = 'Create a new laravel package template';
 
@@ -38,11 +42,11 @@ class NewPackageCommand extends Command
     protected $namespace;
 
     /**
-     * The namespaceVendor of the package.
+     * The vendorNamespace of the package.
      *
      * @var string
      */
-    protected $namespaceVendor;
+    protected $vendorNamespace;
 
     /**
      * The vendor of the package.

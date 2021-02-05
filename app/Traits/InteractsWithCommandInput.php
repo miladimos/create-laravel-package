@@ -1,20 +1,20 @@
 <?php
 
-namespace Naoray\LaravelPackageMaker\Traits;
+namespace App\Traits;
 
 use Symfony\Component\Console\Input\InputArgument;
 
-trait HasNameInput
+trait InteractsWithCommandInput
 {
     /**
      * Get the console command arguments.
      *
      * @return array
      */
-    protected function getArguments()
+    protected function getArgument($input, $required = false)
     {
         return [
-            ['name', InputArgument::REQUIRED, 'The name of the class'],
+            [$input, InputArgument::REQUIRED, 'The name of the class'],
         ];
     }
 }
