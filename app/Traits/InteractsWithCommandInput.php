@@ -13,8 +13,14 @@ trait InteractsWithCommandInput
      */
     protected function getArgument($input, $required = false)
     {
+
         return [
             [$input, InputArgument::REQUIRED, 'The name of the class'],
         ];
+    }
+
+    protected function getAskArgument($input, $required = false)
+    {
+        //
     }
 }

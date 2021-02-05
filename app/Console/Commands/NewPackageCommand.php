@@ -72,16 +72,30 @@ class NewPackageCommand extends Command
         $this->info("Creating new laravel package template ... ");
 
 
-        $this->vendor = $service->name($this->argument('vendor'));
 
+        $this->name = $service->name($this->argument('name'));
+        if (!$this->argument('name')) {
+            $this->name = $service->name($this->ask('Package Name: '));
+        }
+
+        $this->vendor = $service->name($this->argument('vendor'));
         if (!$this->argument('vendor')) {
             $this->vendor = $service->name($this->ask('Vendor Name: '));
         }
 
-        $this->name = $service->name($this->argument('name'));
+        $this->author = $service->name($this->argument('author'));
+        if (!$this->argument('author')) {
+            $this->author = $service->name($this->ask('Package author: '));
+        }
 
+        $this->namespace = $service->name($this->argument('namespace'));
         if (!$this->argument('name')) {
-            $this->name = $service->name($this->ask('Package Name: '));
+            $this->namespace = $service->name($this->ask('Package namespace: '));
+        }
+
+        $this->vendorNamespace = $service->name($this->argument('vendorNamespace'));
+        if (!$this->argument('vendorNamespace')) {
+            $this->vendorNamespace = $service->name($this->ask('Package vendorNamespace: '));
         }
 
         $this->notify("test", "ok");
@@ -92,7 +106,7 @@ class NewPackageCommand extends Command
         $this->info($this->vendor);
         $this->newLine();
 
-        $url = "https://github.com/miladimos/package-skeleton/archive/master.zip";
+        $templateUrl = config('package.template.url');
 
 
         $this->task("Installing Laravel", function () {
