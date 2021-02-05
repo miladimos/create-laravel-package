@@ -7,18 +7,9 @@ use LaravelZero\Framework\Commands\Command;
 
 class VersionCommand extends Command
 {
-    /**
-     * The signature of the command.
-     *
-     * @var string
-     */
+
     protected $signature = 'version';
 
-    /**
-     * The description of the command.
-     *
-     * @var string
-     */
     protected $description = 'Current Version';
 
     /**
@@ -34,12 +25,6 @@ class VersionCommand extends Command
         $this->info("Current Installed Package Version: \n" . config('app.version'));
     }
 
-    /**
-     * Define the command's schedule.
-     *
-     * @param  \Illuminate\Console\Scheduling\Schedule $schedule
-     * @return void
-     */
     public function schedule(Schedule $schedule): void
     {
         // $schedule->command(static::class)->everyMinute();
