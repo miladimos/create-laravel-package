@@ -3,6 +3,7 @@
 namespace App\Traits;
 
 use Symfony\Component\Process\Process;
+use Symfony\Component\Process\Exception\ProcessFailedException;
 
 trait InteractsWithTerminal
 {
@@ -20,5 +21,18 @@ trait InteractsWithTerminal
         $process->run(function ($type, $line) {
             $this->command->output->write($line);
         });
+    }
+
+    protected function run($command)
+    {
+        $process = new Process($command);
+
+        try {
+            $process->mustRun();
+
+            return $process->getOutput();
+        } catch (ProcessFailedException $exception) {
+            return $exception->getMessage();
+        }
     }
 }
