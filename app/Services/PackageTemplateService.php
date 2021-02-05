@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use ZipArchive;
+use Exception;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
@@ -19,9 +20,14 @@ final class PackageTemplateService
     {
         $response  = Http::retry(3, 100)->get($url);
 
-        if ($response->ok() && $response->successful) {
+        if ($response->ok() && $response->successful()) {
+
+            try {
+                Storage::put("template.zip", $response);
+            } catch (Exception $e) {
+                throw $e->getMessage();
+            }
             return true;
-            Storage::put("template.zip", $response);
         }
 
         return false;
@@ -29,8 +35,8 @@ final class PackageTemplateService
 
     public function extract($templatePath, $extractTo)
     {
-        $zip = new ZipArchive;
-        if ($zip->open($templatePath) === true) {
+        $zip = new ZipArchive();
+        if ($zip->open($templatePath, ZipArchive::OVERWRITE) === true) {
             $zip->extractTo($extractTo);
             $zip->close();
             return true;

@@ -1,7 +1,13 @@
 {
     "name": "miladimos/create-laravel-package",
     "description": "The Laravel Zero Framework.",
-    "keywords": ["framework", "laravel", "laravel zero", "console", "cli"],
+    "keywords": [
+        "framework",
+        "laravel",
+        "laravel zero",
+        "console",
+        "cli"
+    ],
     "homepage": "https://create-laravel-package.com",
     "type": "project",
     "license": "MIT",
@@ -19,12 +25,16 @@
     "require": {
         "php": "^7.3",
         "guzzlehttp/guzzle": "^6.5.5",
+        "illuminate/console": "^7.0|^8.0",
+        "illuminate/filesystem": "^7.0|^8.0",
         "illuminate/http": "^8.0",
         "illuminate/log": "^8.0",
+        "illuminate/support": "^7.0|^8.0",
         "laminas/laminas-text": "^2.8",
         "laravel-zero/framework": "^8.0",
         "nunomaduro/laravel-desktop-notifier": "^2.5",
-        "padraic/phar-updater": "^1.0.6"
+        "padraic/phar-updater": "^1.0.6",
+        "symfony/process": "^5.2"
     },
     "require-dev": {
         "mockery/mockery": "^1.4.2",
@@ -47,5 +57,7 @@
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
-    "bin": ["create-laravel-package"]
+    "bin": [
+        "create-laravel-package"
+    ]
 }

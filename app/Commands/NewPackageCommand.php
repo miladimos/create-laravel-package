@@ -24,6 +24,27 @@ class NewPackageCommand extends Command
     protected $name;
 
     /**
+     * The author of the package.
+     *
+     * @var string
+     */
+    protected $author;
+
+    /**
+     * The namespace of the package.
+     *
+     * @var string
+     */
+    protected $namespace;
+
+    /**
+     * The namespaceVendor of the package.
+     *
+     * @var string
+     */
+    protected $namespaceVendor;
+
+    /**
      * The vendor of the package.
      *
      * @var string
