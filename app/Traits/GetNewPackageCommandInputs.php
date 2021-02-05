@@ -14,26 +14,60 @@ trait GetNewPackageCommandInputs
         $this->service = $service;
     }
 
+
     /**
-     * Get the desired class name from the input.
+     * get Nedded Inputs for create new package.
+     */
+    public function getInputs()
+    {
+        $packageName = $this->getPackageNameInput();
+        $vendor = $this->getVendorInput();
+        $dir = $this->getDirectoryInput();
+        $author = $this->getAuthorInput();
+        $email = $this->getEmailInput();
+        $copyright = $this->getCopyrightInput();
+        $namespace = $this->getCopyrightInput();
+        $vendorNamespace = $this->getCopyrightInput();
+
+        $this->table(
+            ['packageName', 'Vendor', 'Directory', 'Author', 'E-mail', 'Copyright'],
+            [
+                [$packageName, $vendor, $dir, $author, $email, $copyright],
+            ]
+        );
+    }
+
+    /**
+     * Get the vendor name from the input.
      *
      * @return string
      */
-    protected function getNameInput()
+    protected function getVendorInput()
     {
-        if ($this->packageName) {
-            return $this->packageName;
+
+        $this->vendor = $this->argument('vendor');
+
+        if (!$this->argument('vendor')) {
+            $this->vendor = $this->ask('Package Name: ');
         }
 
-        if (!$this->packageName = trim($this->argument('name'))) {
-            $this->packageName = $this->ask('What\'s your packages name?');
+        return $this->vendor;
+    }
+
+    /**
+     * Get author name from the input.
+     *
+     * @return string
+     */
+    protected function getAuthorInput()
+    {
+
+        $this->author = $this->argument('author');
+
+        if (!$this->argument('author')) {
+            $this->author = $this->ask('Package Name: ');
         }
 
-        return $this->packageName;
-
-        $this->name = $service->name($this->argument('name'));
-        if (!$this->argument('name')) {
-            $this->name = $service->name($this->ask('Package Name: '));
-        }
+        return $this->author;
     }
 }

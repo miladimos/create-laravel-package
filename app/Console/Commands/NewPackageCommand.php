@@ -12,7 +12,7 @@ class NewPackageCommand extends Command
 {
 
     protected $signature = 'new
-                            {name? : packageName}
+                            {packageName? : packageName}
                             {vendor? : vendor}
                             {email? : authroEmail}
                             {author? : author}
@@ -26,7 +26,7 @@ class NewPackageCommand extends Command
      *
      * @var string
      */
-    protected $name;
+    protected $packageName;
 
     /**
      * The author of the package.
@@ -90,9 +90,9 @@ class NewPackageCommand extends Command
 
 
 
-        $this->name = $service->name($this->argument('name'));
-        if (!$this->argument('name')) {
-            $this->name = $service->name($this->ask('Package Name: '));
+        $this->packageName = $service->name($this->argument('packageName'));
+        if (!$this->argument('packageName')) {
+            $this->packageName = $service->name($this->ask('Package Name: '));
         }
 
         $this->vendor = $service->name($this->argument('vendor'));
