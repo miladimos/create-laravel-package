@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Commands;
+namespace App\Console\Commands;
 
 use App\Services\PackageTemplateService;
 use Illuminate\Console\Scheduling\Schedule;
