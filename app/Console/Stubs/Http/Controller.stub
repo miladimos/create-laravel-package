@@ -1,4 +1,19 @@
 <?php
+
 namespace {{ $controllerNamespace }};
 
-class {{ $controllerClass }} extends controllerC
+use App\Http\Controllers\Controller;
+
+class {{ $controllerClass }} extends Controller
+{
+    /**
+     * summary method.
+     *
+     * @param
+     * @return
+     */
+    public function index()
+    {
+       //
+    }
+}
