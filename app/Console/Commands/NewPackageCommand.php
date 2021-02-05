@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use Illuminate\Filesystem\Filesystem;
 use App\Services\PackageTemplateService;
 use Illuminate\Console\Scheduling\Schedule;
 use LaravelZero\Framework\Commands\Command;
@@ -63,6 +64,22 @@ class NewPackageCommand extends Command
     protected $email;
 
     /**
+     * The instanse of Filesystem.
+     *
+     * @var string
+     */
+    protected $fileSystem;
+
+
+    public function __construct(Filesystem $fileSystem)
+    {
+        parent::__construct();
+
+        $this->fileSystem = $fileSystem;
+    }
+
+
+    /**
      * Execute the console command.
      *
      * @return mixed
@@ -105,9 +122,6 @@ class NewPackageCommand extends Command
         $this->info($this->name);
         $this->info($this->vendor);
         $this->newLine();
-
-        $templateUrl = config('package.template.url');
-
 
         $this->task("Installing Laravel", function () {
             return false;
