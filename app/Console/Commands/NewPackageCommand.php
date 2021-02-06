@@ -88,8 +88,6 @@ class NewPackageCommand extends Command
     {
         $this->info("Creating new laravel package template ... ");
 
-
-
         $this->packageName = $service->name($this->argument('packageName'));
         if (!$this->argument('packageName')) {
             $this->packageName = $service->name($this->ask('Package Name: '));

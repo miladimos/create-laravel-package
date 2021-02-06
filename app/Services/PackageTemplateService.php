@@ -35,13 +35,22 @@ final class PackageTemplateService
 
     public function extract($templatePath, $extractTo)
     {
-        $zip = new ZipArchive();
+        // $zip = new ZipArchive();
+        // if ($zip->open($templatePath, ZipArchive::OVERWRITE) === true) {
+        //     $zip->extractTo($extractTo);
+        //     $zip->close();
+        //     return true;
+        // } else {
+        //     return false;
+        // }
+        $zip = new ZipArchive;
         if ($zip->open($templatePath, ZipArchive::OVERWRITE) === true) {
-            $zip->extractTo($extractTo);
+            for ($i = 0; $i < $zip->numFiles; $i++) {
+                $filename = $zip->getNameIndex($i);
+                $fileinfo = pathinfo($filename);
+                copy("zip://" . $templatePath . "#" . $filename, $extractTo . '//' . $fileinfo['basename']);
+            }
             $zip->close();
-            return true;
-        } else {
-            return false;
         }
     }
 }
